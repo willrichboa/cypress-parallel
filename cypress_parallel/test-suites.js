@@ -63,6 +63,9 @@ function distributeTestsByWeight(testSuitePaths) {
     threads[0].list.push(m.spec);
     threads[0].weight += m.weight;
   })
+  let totalLength = 0
+  threads.forEach((t) => { totalLength += t.list.length })
+  if (totalLength != testSuitePaths.length) { throw new Error('after creating threads the number of suites was wrong') }
 
   // Run slowest group first
   return threads.reverse()

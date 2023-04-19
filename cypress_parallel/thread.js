@@ -11,7 +11,7 @@ async function executeThread(thread, index) {
 
   // legacy sleep. maybe can remove. need to test.
   // staggered start (when executed in container with xvfb ends up having a race condition causing intermittent failures)
-  await new Promise((resolve) => setTimeout(resolve, index * 2000))
+  await new Promise((resolve) => setTimeout(resolve, index * 3000))
 
   const specFiles = `${thread.list.map(path => path).join(',')}`;
   const runObj = {

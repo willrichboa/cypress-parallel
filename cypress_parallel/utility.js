@@ -130,15 +130,9 @@ function handleMismatchedSuiteCount(testSuitePaths, resultsMap, totalTests) {
       resultPaths.push(run.spec.relative)
     })
   })
-  const missingTestResults = testSuitePaths.filter((path) => {
-    !resultPaths.includes(path)
-  });
-  console.log(
-    `paths found based on glob pattern: ${JSON.stringify(testSuitePaths)}
-     paths reported as executed by cypress: ${JSON.stringify(resultPaths)}
-
-     The following paths are not in both sets: 
-    ${missingTestResults}`
+  const missingTestResults = testSuitePaths.filter(path => !resultPaths.includes(path));
+  console.log(`The following paths are not in both sets: 
+    ${JSON.stringify(missingTestResults)}`
   );
 }
 
