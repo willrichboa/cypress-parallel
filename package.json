@@ -6,7 +6,7 @@
   "main": "cypress_parallel/cypress-parallel.js",
   "scripts": {
     "cy:parallel": "npx cli-cypress-parallel",
-    "cy:parallel:test": "npm run cy:parallel -- -t 6 -d './test/cypress/integration/**' --configFile './test/cypress.json' -o './test/reporter-config.json'"
+    "cy:parallel:test": "npm run cy:parallel -- -t 6 -d './cypress/integration/**' --configFile './cypress.json' -o './reporter-config.json'"
   },
   "author": "willrichboa",
   "license": "MIT",

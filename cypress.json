@@ -1,0 +1,7 @@
+{
+  "video": false,
+  "retries": {
+    "runMode": 0
+  },
+  "integrationFolder": "cypress/integration"
+}

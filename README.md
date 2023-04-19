@@ -19,9 +19,9 @@ It will record the time-based "weight" of each test file into a local json, and 
 checkout locally
 
 ```
-chmod +x ./cypress_parallel/cypress-parallel.js
-sudo npm link
+$ npm i -D git+ssh://git@github.com/willrichboa/cypress-parallel.git
 ```
+
 ### run cypress tests in this repo
 
 by default runs with 2 threads using the glob pattern "test/cypress/integration/\*\*/\*\*"
@@ -29,6 +29,7 @@ by default runs with 2 threads using the glob pattern "test/cypress/integration/
 ```
 npm run cy:parallel:test
 ```
+
 currently using cypress v9.7.0, but I have tested with the latest version 12.9.0 and confirmed that also works, although it seems to not perform as well as v.9.7.0.
 
 ### With Custom Arguments
