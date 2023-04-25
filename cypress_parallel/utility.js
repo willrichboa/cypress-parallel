@@ -82,8 +82,13 @@ function generateAndLogResultsTable(resultMaps) {
   let totalPending = 0;
   let totalSuites = 0
   resultMaps.forEach((m) => {
+    if (m?.status === 'failed') {
+      console.log(`a cypress thread did not finish successfully`)
+      console.error(m.message)
+      return
+    }
     totalDuration += m?.totalDuration || 0
-    totalFailures += m?.totalFailed || 0
+    totalFailures += m?.totalFailed || m?.failed || 0
     totalPasses += m?.totalPassed || 0
     totalPending += m?.totalPending || 0
     totalTests += m?.totalTests || 0
