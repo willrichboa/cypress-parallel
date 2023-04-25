@@ -82,12 +82,12 @@ function generateAndLogResultsTable(resultMaps) {
   let totalPending = 0;
   let totalSuites = 0
   resultMaps.forEach((m) => {
-    totalDuration += m.totalDuration || 0
-    totalFailures += m.totalFailed || 0
-    totalPasses += m.totalPassed || 0
-    totalPending += totalPending || 0
-    totalTests += m.totalTests || 0
-    totalSuites += m.runs?.length || 0
+    totalDuration += m?.totalDuration || 0
+    totalFailures += m?.totalFailed || 0
+    totalPasses += m?.totalPassed || 0
+    totalPending += m?.totalPending || 0
+    totalTests += m?.totalTests || 0
+    totalSuites += m?.runs?.length || 0
   });
 
   let table = new Table({
