@@ -37,7 +37,7 @@ async function executeThread(thread, index) {
   await new Promise((resolve) => setTimeout(resolve, index * 3000))
   console.log(`starting thread with index ${index} with specFiles ${specFiles}`)
   try {
-    await cypress.run(runObj)
+    return cypress.run(runObj)
   } catch (e) {
     console.error(e)
     console.error(`error in thread with index ${index}`)
