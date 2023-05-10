@@ -34,21 +34,21 @@ async function executeThread(thread, index) {
   } else {
     runObj['config'] = { video: false }
   }
-  await new Promise((resolve) => setTimeout(resolve, index * 3000))
-  console.log(`starting thread with index ${index} with specFiles ${specFiles}`)
+  await new Promise((resolve) => setTimeout(resolve, index * 4000))
+  console.log(`starting thread with index ${index} with specFiles count ${specFiles.length}`)
   try {
     return cypress.run(runObj)
       .then(results => {
         if (results.status === 'failed') {
-          console.log(`cypress thread ${index} did not finish successfully`)
-          console.error(`cypress thread ${index} had number of failures: ${results.failures}`)
           console.error(`cypress thread ${index} had failure message ${results.message}`)
+          process.exit(results.failures)
         }
         return results
       })
   } catch (e) {
     console.error(e)
     console.error(`error in thread with index ${index}`)
+    process.exit(1)
   }
 
 }
