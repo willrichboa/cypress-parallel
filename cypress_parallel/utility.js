@@ -85,7 +85,6 @@ function generateAndLogResultsTable(resultMaps) {
     if (m?.status === 'failed') {
       console.log(`a cypress thread did not finish successfully`)
       console.error(m.message)
-      return
     }
     totalDuration += m?.totalDuration || 0
     totalFailures += m?.totalFailed || m?.failed || 0

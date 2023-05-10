@@ -38,6 +38,14 @@ async function executeThread(thread, index) {
   console.log(`starting thread with index ${index} with specFiles ${specFiles}`)
   try {
     return cypress.run(runObj)
+      .then(results => {
+        if (results.status === 'failed') {
+          console.log(`cypress thread ${index} did not finish successfully`)
+          console.error(`cypress thread ${index} had number of failures: ${results.failures}`)
+          console.error(`cypress thread ${index} had failure message ${results.message}`)
+        }
+        return results
+      })
   } catch (e) {
     console.error(e)
     console.error(`error in thread with index ${index}`)
