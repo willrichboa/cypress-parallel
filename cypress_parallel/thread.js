@@ -9,14 +9,14 @@ const cypress = require('cypress')
  */
 async function executeThread(thread, index) {
   if (thread.list.length < 1) {
-    throw new Error(`thread for index ${index} was empty before mapping`)
+    throw new Error(`thread for index ${index + 1} was empty before mapping`)
   }
 
   // legacy sleep. maybe can remove. need to test.
   // staggered start (when executed in container with xvfb ends up having a race condition causing intermittent failures)
   const specFiles = `${thread.list.map(path => path).join(',')}`;
   if (specFiles.length === '') {
-    throw new Error(`list of specFiles for thread at index ${index} was empty after mapping`)
+    throw new Error(`list of specFiles for thread at index ${index + 1} was empty after mapping`)
   }
   const runObj = {
     spec: specFiles,
@@ -34,20 +34,21 @@ async function executeThread(thread, index) {
   } else {
     runObj['config'] = { video: false }
   }
-  await new Promise((resolve) => setTimeout(resolve, index * 4000))
-  console.log(`starting thread with index ${index} with specFiles count ${specFiles.length}`)
+  await new Promise((resolve) => setTimeout(resolve, index + 1 * 2000))
+  console.log(`starting thread with index ${index + 1} with specFiles count ${thread.list.length}`)
   try {
     return cypress.run(runObj)
       .then(results => {
         if (results.status === 'failed') {
-          console.error(`cypress thread ${index} had failure message ${results.message}`)
+          console.error(`cypress thread ${index + 1} had a failure message ${results.message}`)
           process.exit(results.failures)
         }
+        cy.log(`cypress thread ${index + 1} complete`)
         return results
       })
   } catch (e) {
     console.error(e)
-    console.error(`error in thread with index ${index}`)
+    console.error(`error in thread with index ${index + 1}`)
     process.exit(1)
   }
 
