@@ -43,7 +43,7 @@ async function executeThread(thread, index) {
           console.error(`cypress thread ${index + 1} had a failure message ${results.message}`)
           process.exit(results.failures)
         }
-        cy.log(`cypress thread ${index + 1} complete`)
+        console.log(`cypress thread ${index + 1} complete`)
         return results
       })
   } catch (e) {
