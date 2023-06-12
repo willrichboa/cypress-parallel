@@ -6,14 +6,14 @@
   "main": "cypress_parallel/cypress-parallel.js",
   "scripts": {
     "cy:parallel": "npx cli-cypress-parallel",
-    "cy:parallel:test": "npm run cy:parallel -- -t 6 -d './cypress/integration/**' --configFile './cypress.json' -o './reporter-config.json'"
+    "cy:parallel:test": "npm run cy:parallel -- -t 4 -d './cypress/e2e/**' --configFile './cypress.config.js' -o './reporter-config.json'"
   },
   "author": "willrichboa",
   "license": "MIT",
   "dependencies": {
     "cli-table3": "^0.6.3",
     "colors": "^1.4.0",
-    "cypress": "9.7.0",
+    "cypress": "^12.14.0",
     "cypress-multi-reporters": "^1.6.3",
     "glob": "^10.0.0",
     "yargs": "^17.7.1"

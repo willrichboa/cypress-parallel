@@ -10,5 +10,6 @@ module.exports = defineConfig({
     reporterOptions: {
       configFile: 'reporter-config.json'
     },
+    specPattern: 'cypress/e2e/**/*.cy.{js,ts}'
   },
 });

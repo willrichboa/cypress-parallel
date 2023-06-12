@@ -36,22 +36,23 @@ async function executeThread(thread, index) {
   }
   await new Promise((resolve) => setTimeout(resolve, index + 1 * 2000))
   console.log(`starting thread with index ${index + 1} with specFiles count ${thread.list.length}`)
-  try {
-    return cypress.run(runObj)
-      .then(results => {
-        if (results.status === 'failed') {
-          console.error(`cypress thread ${index + 1} had a failure message ${results.message}`)
-          process.exit(results.failures)
-        }
-        console.log(`cypress thread ${index + 1} complete`)
-        return results
-      })
-  } catch (e) {
-    console.error(e)
-    console.error(`error in thread with index ${index + 1}`)
-    process.exit(1)
-  }
-
+  return cypress.run(runObj)
+    .then(results => {
+      if (results.status === 'failed') {
+        console.error(`cypress thread ${index + 1} had a failure message ${results.message}`)
+      }
+      console.log(`cypress thread ${index + 1} complete`)
+      return results
+    })
+    .catch((e) => {
+      console.error(e)
+      console.error(`error in thread with index ${index + 1}`)
+      return {
+        status: 'failed',
+        message: e,
+        failures: 1
+      }
+    })
 }
 
 module.exports = {
